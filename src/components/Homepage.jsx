@@ -57,49 +57,43 @@ export default function Homepage() {
         <button type="button" className="px-8 py-2 bg-blue-500 rounded-xl" onClick={search}>Search</button>
       </div>
       </div>
-      <div className="flex flex-col  w-[70vw] h-[90vh] mx-auto hover:shadow-lg  justify-center items-center mt-5  bg-white font-serif">
+      <div className="flex flex-col  w-[full] md:w-[70vw] h-screen-height mx-auto hover:shadow-lg   mt-5  bg-white font-serif">
         {userdata?
-      <div className="flex  flex-wrap lg:flex-nowrap rounded-lg border-black">
-        <div className="m-4 mx-auto " drag
-    dragConstraints={{
-      top: -50,
-      left: -50,
-      right: 50,
-      bottom: 50,
-    }}><img src={userdata.avatar_url} className="rounded-full w-[150px] h-[100px] md:w-[150px] md:h[200px] lg:w-[300px] lg:h-[150px]"/></div>
-        <div>{userdata.bio}</div>
-        <div className="lg:mt-0 mt-4">Joined at <span className="font-bold">{(new Date(userdata.created_at)).toDateString()}</span></div>
+      <div className="flex  flex-wrap lg:flex-nowrap rounded-lg border-black justify-between">
+        <div className="m-4 mt-5 basis-2/4"><img src={userdata.avatar_url} className="rounded-full w-[150px] h-[100px] md:w-[150px] md:h[200px] "/></div>
+        {userdata.bio?<div className="mt-5 basis-1/4 lg:mr-[20%]">{userdata.bio}</div>:<div className="mt-5">Profile bio is not there</div>}
+        <div className="lg:mt-4 mt-4 mx-4 basis-1/4">Joined at <span className="font-bold">{(new Date(userdata.created_at)).toDateString()}</span></div>
         <br/>
    
       </div>
       
 :""}{userdata?
-     <div className="flex justify-center gap-4  flex-wrap" >
+     <div className="flex justify-center gap-4  mt-5 flex-wrap" >
   <div className="flex flex-col bg-blue-200 "><h1 className="text-2xl font-bold">Repos</h1><h1 className="text-center">{userdata.public_repos}</h1></div>
   <div  className="flex flex-col bg-blue-200"><h1 className="text-2xl font-bold">Followers</h1><h1 className="text-center">{userdata.followers}</h1></div>
   <div  className="flex flex-col bg-blue-200"><h1 className="text-2xl font-bold">Following</h1><h1 className="text-center">{userdata.following}</h1></div>
 </div>:""}
 {userdata?
-<div className="flex flex-col justify-center mt-5">
+<div className="flex flex-col justify-center items-center mt-5 md:ml-0 ml-[100px]">
   
-<div className="flex flex-row justify-center w-[25rem] ml-[20px] ">
-  <div>
+<div className="flex flex-col md:flex-row flex-wrap justify-center w-[25rem] ">
+  <div className="mt-3 md:mt-0">
   <div><FaMapMarkerAlt size={30}/></div>
-  <div>{userdata.location}</div>
+  {userdata.location?<div>{userdata.location}</div>:"Location unavailable"}
   </div>
-  <div className="ml-[150px]">
+  <div className="ml-0 md:ml-[150px] mt-3 md:mt-0">
   <div><FaTwitter size={30}/></div>
-  <div><Link href={`https://x.com/${userdata.twitter_username}`} >{userdata.twitter_username}</Link></div>
+  {userdata.twitter_username?<div><Link href={`https://x.com/${userdata.twitter_username}`} >{userdata.twitter_username}</Link></div>:"not available"}
   </div>
 </div>
-<div className="flex flex-row justify-center items-center mt-4  w-[25rem] ml-[50px] ">
-  <div className="ml-4">
+<div className="flex flex-col md:flex-row flex-wrap  md:flex-nowrap justify-center mt-4  w-[25rem] ">
+  <div className=" mt-3 md:mt-0">
   <div><FaLink size={30}/></div>
-  <div><Link href={userdata.blog}>{userdata.blog}</Link></div>
+  {userdata.blog?<div><Link href={userdata.blog}>{userdata.blog}</Link></div>:"not available"}
   </div>
-  <div className="truncate w-full ml-[20%]">
+  <div className=" ml-0 md:ml-[150px] mt-3 md:mt-0">
   <div><FaBuilding  size={30}/></div>
-  <div>{userdata.company}</div>
+  {userdata.company?<div>{userdata.company}</div>:"not available"}
   </div>
 
 </div>
