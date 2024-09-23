@@ -25,10 +25,6 @@ A simple and intuitive web application that allows users to search for GitHub us
   - Link to GitHub profile
 - Responsive design for desktop and mobile.
 
-## Screenshots
-
-![GitHub Username Search Screenshot](./screenshots/preview.png)
-
 ## Technologies
 
 - **Frontend**: NextJS, CSS (or TailwindCSS)
